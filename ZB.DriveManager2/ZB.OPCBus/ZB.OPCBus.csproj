@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,9 +51,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OPCBUSService.cs" />
+    <Compile Include="OPCHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ZB.DriveCommon\ZB.DriveCommon.csproj">
+      <Project>{b6bdb81c-701e-4f94-9210-669330f25433}</Project>
+      <Name>ZB.DriveCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZB.NlogHelper\ZB.NlogHelper.csproj">
+      <Project>{7f5b957f-acfa-40ff-be10-fa5ab1999695}</Project>
+      <Name>ZB.NlogHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

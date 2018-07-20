@@ -1,0 +1,22 @@
+﻿<Window x:Class="ZB.DriveManagerTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZB.DriveManagerTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="获取opc配置" Click="获取opc配置_Click" Content="获取opc配置" HorizontalAlignment="Left" Margin="35,129,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="txtOpcIp" HorizontalAlignment="Left" Text="127.0.0.1" Height="23" Margin="107,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label" Content="opc服务Ip" HorizontalAlignment="Left" Margin="19,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="opc服务列表" HorizontalAlignment="Left" Margin="19,99,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmb_OpcSerList" HorizontalAlignment="Left" Margin="107,100,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="获取opc服务列表" Click="获取opc服务列表_Click" Content="获取opc配置" HorizontalAlignment="Left" Margin="72,71,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="开启opc转发" Click="开启opc转发_Click" Content="开启opc转发" HorizontalAlignment="Left" Margin="129,129,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="获取对应项值" Content="获取对应项值" Click="获取对应项值_Click" HorizontalAlignment="Left" Margin="172,194,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="txtOPCItem" HorizontalAlignment="Left" Height="23" Margin="35,195,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="启动da客户端" Content="启动da客户端" HorizontalAlignment="Left" Click="启动da客户端_Click" Margin="107,232,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.26,-0.053"/>
+
+    </Grid>
+</Window>

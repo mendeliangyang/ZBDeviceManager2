@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZB.HKVideoBus", "ZB.HKVideo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZB.PKStationBus", "ZB.PKStationBus\ZB.PKStationBus.csproj", "{CA6ABCB4-BD55-4956-984A-7DA0151DF8DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZB.DriveCommon", "ZB.DriveCommon\ZB.DriveCommon.csproj", "{B6BDB81C-701E-4F94-9210-669330F25433}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZB.DriveManagerTest", "ZB.DriveManagerTest\ZB.DriveManagerTest.csproj", "{30982533-341A-4896-AD7B-17C93F5401AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZB.TransmitDA", "ZB.TransmitDA\ZB.TransmitDA.csproj", "{FDD4C9B9-07B7-425A-B661-A4025258D24F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +69,18 @@ Global
 		{CA6ABCB4-BD55-4956-984A-7DA0151DF8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA6ABCB4-BD55-4956-984A-7DA0151DF8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA6ABCB4-BD55-4956-984A-7DA0151DF8DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6BDB81C-701E-4F94-9210-669330F25433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6BDB81C-701E-4F94-9210-669330F25433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6BDB81C-701E-4F94-9210-669330F25433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6BDB81C-701E-4F94-9210-669330F25433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30982533-341A-4896-AD7B-17C93F5401AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30982533-341A-4896-AD7B-17C93F5401AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30982533-341A-4896-AD7B-17C93F5401AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30982533-341A-4896-AD7B-17C93F5401AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD4C9B9-07B7-425A-B661-A4025258D24F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD4C9B9-07B7-425A-B661-A4025258D24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD4C9B9-07B7-425A-B661-A4025258D24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD4C9B9-07B7-425A-B661-A4025258D24F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,80 @@
+
+<RequisiteParam type="car">
+<Param  ParamName="key" />
+<Param  ParamName="deviceId" />
+<Param  ParamName="des" />
+</RequisiteParam>
+
+
+<!-- server type = OPC/Alarm/HK/ITC/PK/UPS  -->
+<!-- serviceId = 对应列表中的服务ID，区别那个服务的配置文件 和驱动定义的ID -->
+<server type="OPC" serverId="" des="描述">
+<!-- type = 数据点的类型（设备/区域/设备参数）ip，port channelNum 可选配置，根据不同的协议配置， -->
+    <dataPoint key="opc，系统中的name" dataPointId="驱动定义的id" ip="192.168.60.3" port="5768"  type="Gate"  channelNum="1"    des="描述">
+        <dataPoint key="opc，系统中的name" dataPointId="驱动定义的id" ip="192.168.60.3" port="5768"  type="Gate"  channelNum="1"  des="描述" />
+    </dataPoint>
+</server>
+
+
+
+
+
+<!-- alarm  根据别人的配置界面  手动配置数据 -->
+<!-- key 对用告警服务，  Device 对应 Drive ; Zone 对应 Item -->
+<Server type="Alarm" serverId="900000"  des="描述"  >
+    <Drive id="901000" key="11.1.127"  des="通讯机（国金中心）" port="4017">
+        <Drive key="11.1.1 - Alarm，系统中的 key" driveId="驱动定义的id"   des="描述">
+            <Param key="11.1.1.1 -  Alarm，系统中的 key" driveId="驱动定义的id"  des="描述" >
+        </Drive>
+    </Drive>
+</Server>
+
+<!-- hk  根据别人的配置界面  手动配置数据 -->
+<!-- key 对用告警服务， Server 对应 CM ; Device 对应 Drive ; Zone 对应 Item -->
+<Server type="HK" serverId="900001"  des="描述"  >
+    <Drive ip="192.168.60.3"  key="Alarm，系统中的 key" driveId="驱动定义的id"   des="描述">
+        <Param key="e8fc7a4c2bf7435fb942ad9dfd5aa69d - hk系统中的 key"  ip="192.168.61.30" channelNum="1"  driveId="驱动定义的id"  des="描述" >
+    </Drive>
+</Server>
+
+
+<!-- type = OPC/Alarm/HK/ITC/PK/UPS  -->
+<!-- serviceId = 对应列表中的服务ID，区别那个服务的配置文件 和驱动定义的ID -->
+<!--num 是否需要，有什么作用-->
+<Server type="ITC" serverId="" des="描述">
+    <Drive key="0" driveId="910000  --驱动定义的id" info="主机">
+        <!-- type 标识当前设备类型，区域设备或者直接对应设备 -->
+        <Drive key="itc，系统中的标识" driveId="驱动定义的id" type="amp"   des="描述">
+            <Param key="itc，系统中的标识" driveId="驱动定义的id"  des="描述" >
+        </Drive>
+    </Drive>
+</Server>
+
+
+
+<!-- type = OPC/Alarm/HK/ITC/PK/UPS  -->
+<!-- serviceId = 对应列表中的服务ID，区别那个服务的配置文件 和驱动定义的ID -->
+<Server type="PK" serverId="" des="描述">
+        <!-- type -{Gate/Map/Car} 标识当前设备抬杆岗亭/区域标识/车位标识 -->
+    <Drive key="pk，系统中的标识" type="Gate" driveId="驱动定义的id"   des="描述">
+        <Param key="pk，系统中的标识" ip="192.168.66.21" port="5768"  driveId="881001" des="描述" >
+    </Drive>
+    <Drive key="pk，系统中的标识" type="Map" driveId="驱动定义的id"   des="描述">
+        <Param key="pk，系统中的标识"  driveId="881001" des="描述" >
+    </Drive>
+     <Drive key="pk，系统中的标识" type="Car" driveId="驱动定义的id"   des="描述">
+        <Param key="pk，系统中的标识" driveId="881001" des="描述" >
+    </Drive>
+</Server>
+
+
+
+<!-- type = OPC/Alarm/HK/ITC/PK/UPS  -->
+<!-- serviceId = 对应列表中的服务ID，区别那个服务的配置文件 和驱动定义的ID -->
+<Server type="UPS" serverId="" des="描述">
+    <Drive key="UPS，系统中的标识" driveId="驱动定义的id"  ip="192.168.68.100"  des="描述">
+        <Param key="1.3.6.1.4.1.936.1.1.3.1.3.1  - UPS oid，系统中的标识" driveId="4500"  des="描述" >
+    </Drive>
+</Server>
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <meta charset="utf-8">
+   <title>菜鸟</title>
+    
+      <script type="text/javascript">
+
+         function WebSocketTest()
+         {
+            if ("WebSocket" in window)
+            {
+               alert(" WebSocket!");
+               
+               var ws = new WebSocket("ws://127.0.0.1:9000");
+                
+               ws.onopen = function()
+               {
+               
+                  var sendDatabytes = new ArrayBuffer();
+                  sendDatabytes[0] =0xDC;
+                  sendDatabytes[1] =0x60;
+                  sendDatabytes[2] =0x51;
+                  sendDatabytes[3] =0x00;
+                  sendDatabytes[4] =0x00;
+                  sendDatabytes[5] =0x00;
+                  sendDatabytes[6] =0xDA;
+                  sendDatabytes[7] =0x80;
+                  var sendStr ='{"msgType":81}';
+
+
+                var aData = [0xDC, 0x60, 0x51, 0x00, 0x00, 0, 0xDA, 0x80];
+
+                
+                var data = new Uint8Array(aData);
+
+                ws.send(data);
+
+                console.log('连接成功');
+
+               };
+                
+               ws.onmessage = function (evt) 
+               { 
+                   console.log("接受到数据");
+                   var received_msg = evt.data;
+                   console.log(evt.data);
+                  
+               };
+                
+               ws.onclose = function()
+               { 
+                   console.log("  websocket 关闭");
+                  alert("websocket 关闭..."); 
+               };
+            }
+            
+            else
+            {
+              
+               alert("不支持 WebSocket!");
+            }
+         }
+      </script>
+        
+   </head>
+   <body>
+   
+      <div id="sse">
+         <a href="javascript:WebSocketTest()">开启 WebSocket</a>
+      </div>
+      
+   </body>
+</html>
