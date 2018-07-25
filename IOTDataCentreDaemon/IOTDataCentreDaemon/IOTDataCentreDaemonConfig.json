@@ -1,0 +1,10 @@
+{
+    "IotIp": "127.0.0.1",
+    "IotPort": "8000",
+    "IotId": 1,
+    "IotGroupId": 1,
+    "ReceiveIotTimeOut": 60,
+  "RateIotTime": 60,
+  "ProcessFileName": "E:\\zb\\DM\\DriveManager.exe",
+  "ProcessName": "DriveManager"
+}
