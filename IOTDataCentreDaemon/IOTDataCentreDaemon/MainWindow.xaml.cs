@@ -75,6 +75,7 @@ namespace IOTDataCentreDaemon
 
             if (receiveDataFlag)
             {
+                NLogHelper.DefalutInfo("IOT正常运行。");
                 this.Dispatcher.Invoke(new Action(() =>
                 {
                     txb_iotStatus.Text = "IOT正常运行";
@@ -82,10 +83,20 @@ namespace IOTDataCentreDaemon
                 }));
                 return;
             }
-            string errMsg = string.Empty;
-                //没有接受到数据，重启iot
-            bool bStartRet= StartExe(LocalConfig.GetIOTWorkDirectory(), LocalConfig.IOTProcessName,out errMsg);
             
+            //没有接受到数据，重启iot
+            StartIotProcess();
+
+
+
+        }
+
+        internal void StartIotProcess()
+        {
+            string errMsg = string.Empty;
+
+            bool bStartRet = StartExe(LocalConfig.GetIOTWorkDirectory(), LocalConfig.IOTProcessName, out errMsg);
+
             this.Dispatcher.Invoke(new Action(() =>
             {
                 if (bStartRet)
@@ -95,14 +106,16 @@ namespace IOTDataCentreDaemon
                 }
                 else
                 {
-                    txb_iotStatus.Text = "IOT重新启动失败。"+errMsg;
+                    txb_iotStatus.Text = "IOT重新启动失败。" + errMsg;
                     txb_iotStatus.Foreground = new SolidColorBrush(Colors.Red);
                 }
-                
-            }));
-            
 
+            }));
         }
+
+
+
+
         internal static bool StartExe(string processFileName, string processName,out string errMsg)
         {
             errMsg = string.Empty;
@@ -193,8 +206,9 @@ namespace IOTDataCentreDaemon
         {
             while (true)
             {
+                NLogHelper.DefalutInfo("开始检测IOT运行情况。");
                 receiveDataFlag = false;
-                daemonHelper.ConnectIot();
+
                 this.Dispatcher.Invoke(new Action(() =>
                 {
                     txb_testIotTime.Text = DateTime.Now.ToString("G");
@@ -202,9 +216,20 @@ namespace IOTDataCentreDaemon
                     txb_iotStatus.Foreground = new SolidColorBrush(Colors.DarkBlue);
                 }));
 
+
+                bool bConnectIot= daemonHelper.ConnectIot();
+                if (!bConnectIot)
+                {
+                    NLogHelper.DefalutInfo("连接IOT失败，重启IOT。");
+                    //连接失败重启iot
+                    StartIotProcess();
+                    Thread.Sleep(10000);
+                    continue;
+                }
+
                 if (!timer.Enabled)
                 {
-                    timer.Enabled = true;
+                    timer.Start();
                 }
                 Thread.Sleep(iotConfig.RateIotTime*1000);
             }

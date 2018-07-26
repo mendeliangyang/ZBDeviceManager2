@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Sockets;
 using System.Text;
 using ZB.Core;
 using ZB.DataBridge;
@@ -40,7 +41,7 @@ namespace IOTDataCentreDaemon
             }
         }
 
-        internal void ConnectIot()
+        internal bool ConnectIot()
         {
             try
             {
@@ -51,11 +52,19 @@ namespace IOTDataCentreDaemon
                 client.Connect(iotConfig.IotIp, iotConfig.IotPort);
                 client.RegisterAll();
                 client.Identify(iotConfig.IotId, iotConfig.IotGroupId);
+                return true;
+            }
+            catch (SocketException ex)
+            {
+                NLogHelper.DefalutError("  ConnectIot SocketException:{0}", ex.Message);
+                NLogHelper.ExceptionInfo(ex, "  ConnectIot SocketException:{0}", ex.Message);
+                return false;
             }
             catch (Exception ex)
             {
                 NLogHelper.DefalutError("  ConnectIot Exception:{0}", ex.Message);
-                NLogHelper.ExceptionInfo(ex, "  ConnectIot Exception:{0}",ex.Message);
+                NLogHelper.ExceptionInfo(ex, "  ConnectIot Exception:{0}", ex.Message);
+                return false;
             }
             
         }
