@@ -54,17 +54,15 @@ namespace IOTDataWeb.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "电子邮件")]
+        [Display(Name = "用户名")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string Password { get; set; }
-
-        [Display(Name = "记住我?")]
-        public bool RememberMe { get; set; }
+        
     }
 
     public class RegisterViewModel

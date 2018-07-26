@@ -34,7 +34,7 @@ namespace IOTDataCentreDaemon
 
             InitWindow();
 
-            timer = new System.Timers.Timer(iotConfig.ReceiveIotTimeOut);
+            timer = new System.Timers.Timer(iotConfig.ReceiveIotTimeOut*1000);
             timer.Elapsed += Timer_Elapsed;
             timer.AutoReset = true;
 
@@ -191,19 +191,24 @@ namespace IOTDataCentreDaemon
 
         void DaemonThreadExecute()
         {
-            receiveDataFlag = false;
-            daemonHelper.ConnectIot();
-            this.Dispatcher.Invoke(new Action(()=> 
+            while (true)
             {
-                txb_testIotTime.Text = DateTime.Now.ToString("G");
-                txb_iotStatus.Text = "正在检测中……";
-                txb_iotStatus.Foreground = new SolidColorBrush(Colors.AliceBlue);
-            }));
-            
-            if (!timer.Enabled)
-            {
-                timer.Start();
+                receiveDataFlag = false;
+                daemonHelper.ConnectIot();
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    txb_testIotTime.Text = DateTime.Now.ToString("G");
+                    txb_iotStatus.Text = "正在检测中……";
+                    txb_iotStatus.Foreground = new SolidColorBrush(Colors.DarkBlue);
+                }));
+
+                if (!timer.Enabled)
+                {
+                    timer.Enabled = true;
+                }
+                Thread.Sleep(iotConfig.RateIotTime*1000);
             }
+           
         }
 
 
