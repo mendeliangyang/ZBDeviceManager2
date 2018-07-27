@@ -1,6 +1,8 @@
 {
     "IotIp": "127.0.0.1",
-    "IotPort": "8000",
+  "IotPort": 8000,
+  "IotDataAdapterPort": 6000,
+  "IotMockDAId": 110,
     "IotId": 1,
     "IotGroupId": 1,
     "ReceiveIotTimeOut": 60,

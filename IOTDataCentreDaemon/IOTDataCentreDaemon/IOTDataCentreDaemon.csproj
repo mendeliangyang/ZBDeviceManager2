@@ -72,6 +72,9 @@
     <Reference Include="ZB.Core">
       <HintPath>Dll\ZB.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ZB.DataAdapter">
+      <HintPath>Dll\ZB.DataAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="ZB.DataBridge">
       <HintPath>Dll\ZB.DataBridge.dll</HintPath>
     </Reference>
@@ -86,6 +89,7 @@
     <Compile Include="DaemonHelper.cs" />
     <Compile Include="NLogHelper.cs" />
     <Compile Include="RegistryAutoStart.cs" />
+    <Compile Include="TransmitDAClient.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

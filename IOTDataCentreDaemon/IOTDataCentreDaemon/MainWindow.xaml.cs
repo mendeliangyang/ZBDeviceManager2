@@ -16,7 +16,8 @@ namespace IOTDataCentreDaemon
         DaemonHelper daemonHelper = null;
         Thread daemonThread = null;
         System.Timers.Timer timer = null;
-        ConfigEntity iotConfig = null;
+        TransmitDAClient transmitDA = null;
+         ConfigEntity iotConfig = null;
         bool receiveDataFlag = false;
 
         public MainWindow()
@@ -195,8 +196,18 @@ namespace IOTDataCentreDaemon
 
         void client_DataReceived(string device, int id, object value)
         {
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                txb_iotStatus.Text = "IOT正常运行";
+                txb_iotStatus.Foreground = new SolidColorBrush(Colors.Green);
+            }));
+            if (timer.Enabled)
+            {
+                timer.Stop();
+            }
             receiveDataFlag = true;
             daemonHelper.CloseIotConnected();
+            NLogHelper.DefalutInfo("    IOT正常运行    client_DataReceived device:{0};id:{1};value:{2}", device,id.ToString(),value.ToString());
         }
 
 
@@ -207,6 +218,7 @@ namespace IOTDataCentreDaemon
             while (true)
             {
                 NLogHelper.DefalutInfo("开始检测IOT运行情况。");
+
                 receiveDataFlag = false;
 
                 this.Dispatcher.Invoke(new Action(() =>
@@ -217,22 +229,83 @@ namespace IOTDataCentreDaemon
                 }));
 
 
+               
+
+
                 bool bConnectIot= daemonHelper.ConnectIot();
+
                 if (!bConnectIot)
                 {
-                    NLogHelper.DefalutInfo("连接IOT失败，重启IOT。");
+                    NLogHelper.DefalutInfo("DataClient连接IOT失败，重启IOT。");
                     //连接失败重启iot
                     StartIotProcess();
                     Thread.Sleep(10000);
                     continue;
                 }
 
-                if (!timer.Enabled)
+                bool bMockRet = MockDeviceData(ref receiveDataFlag);
+                if (!bMockRet)
+                {
+                    NLogHelper.DefalutInfo("MockDeviceData 失败，重启IOT。");
+                    StartIotProcess();
+                    Thread.Sleep(10000);
+                    continue;
+
+                }
+
+                if (!timer.Enabled && !receiveDataFlag)
                 {
                     timer.Start();
                 }
                 Thread.Sleep(iotConfig.RateIotTime*1000);
             }
+           
+        }
+
+        bool MockDeviceData(ref bool receiveDataFlag)
+        {
+            NLogHelper.DefalutInfo("    MockDeviceData  ");
+            try
+            {
+                if (null == transmitDA)
+                {
+                    transmitDA = new TransmitDAClient();
+                    if (-1 != iotConfig.IotMockDAId)
+                        transmitDA.ID = iotConfig.IotMockDAId;
+                }
+                if (transmitDA.Connected)
+                {
+                    transmitDA.Close();
+                }
+
+                transmitDA.Connect(iotConfig.IotIp, iotConfig.IotDataAdapterPort);
+                NLogHelper.DefalutInfo("    MockDeviceData   connect success ");
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if ( receiveDataFlag)
+                    {
+                        break;
+                    }
+                    transmitDA.DataPackager.Device = "test_device";//deviceId;
+                    transmitDA.DataPackager.Add(i+1, (i+1).ToString());
+                    transmitDA.Send();
+                    NLogHelper.DefalutInfo("    MockDeviceData   send '{0}:{0}'",(i+1).ToString());
+
+                    Thread.Sleep(3000);
+                }
+                
+                transmitDA.Close();
+                NLogHelper.DefalutInfo("    MockDeviceData   close success ");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                NLogHelper.DefalutError("    MockDeviceData   exception :{0}", ex.Message);
+                NLogHelper.ExceptionInfo(ex, "    MockDeviceData   exception :{0}", ex.Message);
+                return false;
+            }
+            
            
         }
 

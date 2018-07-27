@@ -13,6 +13,10 @@ namespace IOTDataCentreDaemon
         private int iotId;
         private int iotGroupId;
 
+        private int iotDataAdapterPort;
+        private int iotMockDAId;
+
+
         private string processFileName;
         private string processName;
 
@@ -120,6 +124,32 @@ namespace IOTDataCentreDaemon
             set
             {
                 processName = value;
+            }
+        }
+
+        public int IotDataAdapterPort
+        {
+            get
+            {
+                return iotDataAdapterPort;
+            }
+
+            set
+            {
+                iotDataAdapterPort = value;
+            }
+        }
+
+        public int IotMockDAId
+        {
+            get
+            {
+                return iotMockDAId;
+            }
+
+            set
+            {
+                iotMockDAId = value;
             }
         }
     }
