@@ -65,6 +65,8 @@ namespace IOTDataCentreDaemon
             this.txb_iotGroupID.Text = iotConfig.IotGroupId.ToString();
             this.txb_receiveIotTimeOut.Text = iotConfig.ReceiveIotTimeOut.ToString();
             this.txb_iotRateIotTime.Text = iotConfig.RateIotTime.ToString();
+            this.txb_mockDAId.Text = iotConfig.IotMockDAId.ToString();
+            this.txb_IotDAPort.Text = iotConfig.IotDataAdapterPort.ToString();
 
             this.txb_iotWorkPath.Text = LocalConfig.GetIOTWorkDirectory();
 

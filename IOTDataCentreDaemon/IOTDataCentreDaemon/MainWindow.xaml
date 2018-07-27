@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IOTDataCentreDaemon"
         mc:Ignorable="d"
-        Title="中邦IOT数据中心守护程序" Height="250" Width="600" ResizeMode="CanMinimize" 
+        Title="中邦IOT数据中心守护程序" Height="300" Width="600" ResizeMode="CanMinimize" 
         Activated="Window_Activated" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -24,7 +25,7 @@
             <TextBlock Text="" x:Name="txb_iotIp" Margin="5"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="0"  Grid.Column="1" Margin="5,10,5,5" Orientation="Horizontal">
-            <TextBlock Text="IOT数据中心IP:" Margin="5"></TextBlock>
+            <TextBlock Text="IOT数据中心Port:" Margin="5"></TextBlock>
             <TextBlock Text="" x:Name="txb_iotPort" Margin="5"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="5,10,5,5" Orientation="Horizontal">
@@ -35,22 +36,30 @@
             <TextBlock Text="守护程序GroupID:" Margin="5"></TextBlock>
             <TextBlock Text="" x:Name="txb_iotGroupID" Margin="5"></TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="2"  Grid.Column="0" Margin="5,10,5,5" Orientation="Horizontal">
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="5,10,5,5" Orientation="Horizontal">
+            <TextBlock Text="模拟DA编号:" Margin="5"></TextBlock>
+            <TextBlock Text="" x:Name="txb_mockDAId" Margin="5"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2"  Grid.Column="1" Margin="5,10,5,5" Orientation="Horizontal">
+            <TextBlock Text="IOT DA Port:" Margin="5"></TextBlock>
+            <TextBlock Text="" x:Name="txb_IotDAPort" Margin="5"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="3"  Grid.Column="0" Margin="5,10,5,5" Orientation="Horizontal">
             <TextBlock Text="接受IOT数据超时时间:" Margin="5"></TextBlock>
             <TextBlock Text="" x:Name="txb_receiveIotTimeOut" Margin="5"></TextBlock>
             <TextBlock Text="秒"  Margin="5"></TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="2"  Grid.Column="1" Margin="5,10,5,5" Orientation="Horizontal">
+        <StackPanel Grid.Row="3"  Grid.Column="1" Margin="5,10,5,5" Orientation="Horizontal">
             <TextBlock Text="检测IOT数据时间间隔:" Margin="5"></TextBlock>
             <TextBlock Text="" x:Name="txb_iotRateIotTime" Margin="5"></TextBlock>
             <TextBlock Text="秒"  Margin="5"></TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="2" Margin="5,10,5,5" Orientation="Horizontal">
+        <StackPanel Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="2" Margin="5,10,5,5" Orientation="Horizontal">
             <TextBlock Text="IOT工作目录:" Margin="5"></TextBlock>
             <TextBlock Text="" 
                        x:Name="txb_iotWorkPath" MaxWidth="500" TextWrapping="Wrap" Margin="5"></TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="4"  Grid.Column="0"  Grid.ColumnSpan="2"  Margin="5,10,5,5" Orientation="Horizontal">
+        <StackPanel Grid.Row="5"  Grid.Column="0"  Grid.ColumnSpan="2"  Margin="5,10,5,5" Orientation="Horizontal">
             <TextBlock Text="最近检测 IOT:" Margin="5"></TextBlock>
             <TextBlock Text="" x:Name="txb_testIotTime" Margin="5"></TextBlock>
             <TextBlock Text=""  
